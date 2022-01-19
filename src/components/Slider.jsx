@@ -3,6 +3,7 @@ import KeyboardArrowLeftOutlinedIcon from '@material-ui/icons/KeyboardArrowLeftO
 import KeyboardArrowRightOutlinedIcon from '@material-ui/icons/KeyboardArrowRightOutlined';
 import { useState } from "react";
 import { sliderItems } from "../data";
+import { mobile } from '../Responsive';
 
 const Container = styled.div`
     width: 100%;
@@ -10,6 +11,9 @@ const Container = styled.div`
     display: flex;
     position: relative;
     overflow: hidden;
+
+    ${mobile({ display: "none" })}
+
 `;
 
 const Arrow = styled.div`
