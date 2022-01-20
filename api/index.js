@@ -6,6 +6,7 @@ const authRoute = require("./routes/auth");
 const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
+const cors = require('cors')
 
 //dotenv config
 const dotenv = require("dotenv");
@@ -19,6 +20,7 @@ mongoose.connect(
 .catch((err) => console.log(err))
 
 //grant json post format
+app.use(cors())
 app.use(express.json())
 
 //endpoint

@@ -27,16 +27,19 @@ export const categories = [
         id: 1,
         img: "https://botero.com.au/wp-content/uploads/mens-tshirt-front-1.jpg",
         title: "SHIRT STYLE!",
+        cat: "women"
     },
     {
         id: 2,
         img: "https://botero.com.au/wp-content/uploads/ladies-tshirt-front-3.jpg",
         title: "LOUNGEWEAR LOVE",
+        cat: "coats"
     },
     {
         id: 3,
         img: "https://botero.com.au/wp-content/uploads/bird-1-600x600.jpg",
         title: "LIGHT JACKETS",
+        cat: "jeans"
     }
 ]
 
