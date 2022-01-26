@@ -1,4 +1,5 @@
 import { Add, Remove } from "@material-ui/icons";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -170,6 +171,9 @@ const Button = styled.button`
 `;
 
 const Cart = () => {
+
+    const cart = useSelector(state => state.cart);
+
     return (
         <Container>
             <Navbar />
@@ -190,47 +194,31 @@ const Cart = () => {
                 <Bottom>
 
                     <Info>
-                        <Product>
-                            <ProductDetail>
-                                <Image src="https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png" />
-                                <Details>
-                                    <ProductName><b>Product :</b>Jessie thunder shoes</ProductName>
-                                    <ProductId><b>ID :</b>Jessie thunder shoes</ProductId>
-                                    <ProductColor color="black" />
-                                    <ProductSize > <b>Size :</b> 37.5 </ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>2</ProductAmount>
-                                    <Remove />
-                                </ProductAmountContainer>
-                                <ProductPrice> $30 </ProductPrice>
-                            </PriceDetail>
-                        </Product>
+                        {
+                            cart.products.map(product => (
+                                <Product>
+                                    <ProductDetail>
+                                        <Image src={product.img} />
+                                        <Details>
+                                            <ProductName><b>Product :</b>{product.title}</ProductName>
+                                            <ProductId><b>ID :</b>{product._id}</ProductId>
+                                            <ProductColor color={product.color} />
+                                            <ProductSize > <b>Size :</b> {product.size} </ProductSize>
+                                        </Details>
+                                    </ProductDetail>
+                                    <PriceDetail>
+                                        <ProductAmountContainer>
+                                            <Add />
+                                            <ProductAmount>{product.quantity}</ProductAmount>
+                                            <Remove />
+                                        </ProductAmountContainer>
+                                        <ProductPrice> $ {product.price * product.quantity} </ProductPrice>
+                                    </PriceDetail>
+                                </Product>
+                            ))
+                        }
 
                         <Hr />
-
-                        <Product>
-                            <ProductDetail>
-                                <Image src="https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png" />
-                                <Details>
-                                    <ProductName><b>Product :</b>Jessie thunder shoes</ProductName>
-                                    <ProductId><b>ID :</b>Jessie thunder shoes</ProductId>
-                                    <ProductColor color="black" />
-                                    <ProductSize > <b>Size :</b> 37.5 </ProductSize>
-                                </Details>
-                            </ProductDetail>
-                            <PriceDetail>
-                                <ProductAmountContainer>
-                                    <Add />
-                                    <ProductAmount>2</ProductAmount>
-                                    <Remove />
-                                </ProductAmountContainer>
-                                <ProductPrice> $30 </ProductPrice>
-                            </PriceDetail>
-                        </Product>
                     </Info>
 
                     <Summary>
@@ -238,7 +226,7 @@ const Cart = () => {
 
                         <SummaryItem>
                             <SummaryItemText>Subtotal</SummaryItemText>
-                            <SummaryItemPrice>$ 80</SummaryItemPrice>
+                            <SummaryItemPrice>$ {cart.total} </SummaryItemPrice>
                         </SummaryItem>
 
                         <SummaryItem>
